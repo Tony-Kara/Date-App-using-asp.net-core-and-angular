@@ -1,0 +1,18 @@
+
+
+
+<form  #registerForm="ngForm" (ngSubmit)="register()">  <!--these html form needs to be converted to an angular form,these is done by -->
+  <h2 class="text-center text-primary">Sign Up</h2>
+  <hr>
+  <div class="form-group"> <!--providing a template reference variable by using the # sign on the element -->
+     <input type="text" #username="ngModel" class="form-control mr-sm-2" placeholder="Username" required name="username" [(ngModel)]="model.username"> <!-- doing binding here-->
+     </div>
+  <div class="form-group">                                                                <!--  this is a 2 way binding for the ngModel directive -->
+     <input type="password" #password="ngModel" class="form-control mr-sm-2"  placeholder="Password" required name="password" [(ngModel)]="model.password">
+    </div>
+
+   <div class="form-group text-center"> 
+   <button type="submit" class="btn btn-success my-2 my-sm-0">Register</button>
+   <button type="button" class="btn btn-success my-2 my-sm-0" (click)="cancel()">Cancel</button>
+    </div>
+</form> 

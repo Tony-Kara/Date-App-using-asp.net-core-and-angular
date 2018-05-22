@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.API.Controllers
 {
     //My API
-    [Authorize]  //these is used for autheticating users before they have access to methods,ensure u add the authorization type in the start up class
+    [AllowAnonymous]  //these is used for autheticating users before they have access to methods,ensure u add the authorization type in the start up class
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {

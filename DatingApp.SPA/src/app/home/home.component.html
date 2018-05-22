@@ -1,0 +1,18 @@
+ <!-- home page html -->  
+ <div *ngIf="!registerMode" class="text-center">
+ <h1>Find your match</h1> 
+ <p class="lead">Come on in to view your matches... All you need to do is sign up!</p> 
+ <div class="text-center">
+ <button class="btn btn-primary btn-lg" (click)="registerToggle()">Register</button>   
+ <button class="btn btn-info btn-lg">Learn More</button>
+  </div>
+ </div>
+
+ <div *ngIf="registerMode" class="container">
+<div class="col-md-4 offset-md-4">
+  <!-- communication is established here and values from the values property inside the home
+  component is passed to the register component -->
+  <app-register  (cancelRegister)="cancelRegisterMode($event)"></app-register>
+</div>
+ </div> 
+

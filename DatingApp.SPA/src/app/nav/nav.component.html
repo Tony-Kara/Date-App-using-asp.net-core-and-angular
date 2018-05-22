@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Dating App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Matches <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Messages</a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item"> <!-- these would be displayed if a token is present -->
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome user</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+          <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
+        </div>
+      </li>
+    </ul>
+    <!-- the below would be displayed if a token is not present ie false,the *ngIf="!loggedIn()" is used -->
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline" (ngSubmit)="login()">  <!--these html form needs to be converted to an angular form,these is done by -->
+         <div class="form-group"> <!--providing a template reference variable by using the # sign on the element -->
+            <input type="text" #username="ngModel" class="form-control mr-sm-2" placeholder="Enter email" required name="username" [(ngModel)]="model.username"> <!-- doing binding here-->
+            
+          </div>
+         <div class="form-group">                                                                <!--  this is a 2 way binding for the ngModel directive -->
+            <input type="password" #password="ngModel" class="form-control mr-sm-2"  placeholder="Password" required name="password" [(ngModel)]="model.password">
+          </div>
+          <button type="submit"[disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
+    
+    </form>
+  </div>
+</nav>
+
+<!-- EXPLANATION 
+The essence of my components in angular is to form building blocks for my application in bits,it would be my front
+end while my API would be my backend, i need to be able to either get/post to my API.
+what happened in these application is that at the front end,i created a form,ensure angular is aware of the form
+by using #loginForm="ngForm",i did a model binding of my username and password which is expected as properties
+at the backend by using [(ngModel)]="username", and i created a reusable service which is the login method in _service
+folder,in here we use the method to send a post request to the server which in turns sends us a jwt token as a response which we also
+subscribe.
+
+
+-->
